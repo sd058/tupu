@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.CityDao">
+    <!-- 查询一个 -->
+    <select id="selectById" resultType="com.example.demo.bean.City">
+        select * from t_city where id = #{id}
+    </select>
+
+    <select id="selectAll" resultType="com.example.demo.bean.City">
+        select * from t_city
+    </select>
+
+    <insert id="insertCity" parameterType="com.example.demo.bean.City">
+        insert into t_city (cityname,
+                            fname,faddress,fancestral,fidentity,finfo,
+                            sname,saddress,sinfo)
+        values (#{cityname,jdbcType=INTEGER},#{fname,jdbcType=INTEGER},
+                #{faddress,jdbcType=INTEGER},#{fancestral,jdbcType=INTEGER},#{fidentity,jdbcType=INTEGER},#{finfo,jdbcType=INTEGER},
+                #{sname,jdbcType=INTEGER},#{saddress,jdbcType=INTEGER},#{sinfo,jdbcType=INTEGER})
+    </insert>
+
+    <delete id="deleteCity" parameterType="com.example.demo.bean.City">
+        delete from t_city
+        where id=#{id,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateCity" parameterType="com.example.demo.bean.City">
+        update t_city
+        set cityname = #{cityname,jdbcType=INTEGER},
+            fname = #{fname,jdbcType=INTEGER},
+            faddress = #{faddress,jdbcType=INTEGER},
+            fancestral = #{fancestral,jdbcType=INTEGER},
+            fidentity = #{fidentity,jdbcType=INTEGER},
+            finfo = #{finfo,jdbcType=INTEGER},
+            sname = #{sname,jdbcType=INTEGER},
+            saddress = #{saddress,jdbcType=INTEGER},
+            sinfo = #{sinfo,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

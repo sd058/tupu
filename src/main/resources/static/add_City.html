@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<!-- 必须的 meta 标签 -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap 的 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		  integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<title>信息添加</title>
+	<style type="text/css">
+		label,
+		legend {
+			text-align: right;
+		}
+	</style>
+	<script>
+		function showCharacters() {
+			document.getElementById("charactersSection").style.display = "block";
+			document.getElementById("attractionsSection").style.display = "none";
+		}
+
+		function showAttractions() {
+			document.getElementById("charactersSection").style.display = "none";
+			document.getElementById("attractionsSection").style.display = "block";
+		}
+
+		function showAll() {
+			document.getElementById("charactersSection").style.display = "block";
+			document.getElementById("attractionsSection").style.display = "block";
+		}
+	</script>
+</head>
+
+<body>
+<div style="height: 200px;"></div>
+<div class="table-dark" style="width: 900px; height: 700px; border: 1px solid black;margin: auto;text-align: center;background-color:rgba(100, 100, 100, 0.7);">
+	<div class="container" style="width: 800px;">
+		<h1 style="text-align: center;">信息添加</h1>
+		<form action="http://localhost:8080/city/add" method="post">
+			<div class="form-group row">
+				<label for="cityname" class="col-sm-2 col-form-label">城市</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="cityname" id="cityname" placeholder="请输入城市名称">
+				</div>
+			</div>
+			<p>
+				<button class="btn btn-primary" type="button" onclick="showCharacters()">人物</button>
+				<button class="btn btn-primary" type="button" onclick="showAttractions()">景点</button>
+				<button class="btn btn-primary" type="button" onclick="showAll()">人物和景点</button>
+			</p>
+			<div id="charactersSection" style="display: none;">
+				<div class="form-group row">
+					<label for="fname" class="col-sm-2 col-form-label">人物</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="fname" id="fname" placeholder="请输入人物姓名">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="faddress" class="col-sm-2 col-form-label">地址</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="faddress" id="faddress" placeholder="请输入人物地址">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="fancestral" class="col-sm-2 col-form-label">祖籍</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="fancestral" id="fancestral" placeholder="请输入人物祖籍">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="fidentity" class="col-sm-2 col-form-label">称号</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="fidentity" id="fidentity" placeholder="请输入人物称号">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="finfo" class="col-sm-2 col-form-label">介绍</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="finfo" id="finfo" placeholder="请输入人物介绍">
+					</div>
+				</div>
+			</div>
+			<div id="attractionsSection" style="display: none;">
+				<div class="form-group row">
+					<label for="aname" class="col-sm-2 col-form-label">景点</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="aname" id="aname" placeholder="请输入景点名称">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="alocation" class="col-sm-2 col-form-label">位置</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="alocation" id="alocation" placeholder="请输入景点位置">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="adescription" class="col-sm-2 col-form-label">描述</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" name="adescription" id="adescription" placeholder="请输入景点描述"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div style="height: 200px;"></div>
+
+<!-- 引入 Bootstrap 的 JS 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-Bn5384xHA7AkH530ke8vRy3+H6P8p0NfJT3/Ky6Xz5n0wL40g+4Q8B9aX7bU6Mf2" crossorigin="anonymous"></script>
+
+<script>
+	// 在页面加载完成后执行
+	window.onload = function() {
+		// 获取提交按钮元素
+		const submitButton = document.querySelector('button[type="submit"]');
+
+		// 添加点击事件监听器
+		submitButton.addEventListener('click', function(event) {
+			// 阻止表单的默认提交行为
+			event.preventDefault();
+
+			// 提交表单
+			event.target.closest('form').submit();
+
+			// 显示添加成功的提示
+			alert("添加成功");
+
+		});
+	};
+</script>
+</body>
+
+</html>
